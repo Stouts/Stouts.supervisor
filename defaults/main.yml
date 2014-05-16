@@ -1,0 +1,12 @@
+---
+
+supervisor_enabled: yes                   # The role is enabled
+supervisor_cfgdir: /etc/supervisor        # path to config directory
+supervisor_logdir: /var/log/supervisor    # path to logs directory
+supervisor_incdir: "{{supervisor_cfgdir}}/conf.d" # path to include directory
+supervisor_tasks: []                      # List of supervisor tasks
+                                          # Ex. supervisor_tasks:
+                                          #       - name: <name>
+                                          #         option: value
+                                          #         option: value
+                                          #         option: value

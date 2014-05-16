@@ -1,0 +1,13 @@
+---
+
+- name: Install supervisor
+  apt: pkg=supervisor
+
+- name: Configure supervisor
+  template: src=supervisord.conf.j2 dest={{supervisor_cfgdir}}/supervisord.conf
+  notify:
+    - supervisor reread
+    - supervisor restart
+
+- name: Ensure the supervisor is started
+  service: name=supervisor state=started
