@@ -4,4 +4,4 @@
   service: name=supervisor state=restarted
 
 - name: supervisor reread
-  shell: supervisorctl reread && supervisorctl restart all
+  shell: /usr/bin/supervisorctl reread && /usr/bin/supervisorctl update
