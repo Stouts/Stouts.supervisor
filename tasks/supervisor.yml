@@ -3,6 +3,9 @@
 - name: Install supervisor
   apt: pkg=supervisor
 
+- include: superlance.yml
+  when: supervisor_superlance
+
 - name: Configure supervisor
   template: src=supervisord.conf.j2 dest={{supervisor_cfgdir}}/supervisord.conf
   notify:

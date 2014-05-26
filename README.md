@@ -4,8 +4,17 @@ Stouts.supervisor
 [![Build Status](https://travis-ci.org/Stouts/Stouts.supervisor.png)](https://travis-ci.org/Stouts/Stouts.supervisor)
 
 Ansible role which manage [supervisor](http://supervisord.org)
+Ansible role apt which help you with:
+
+* Install and manage [supervisor](http://supervisord.org)
+* Install [superlance](http://superlance.readthedocs.org)
+* Manage supervisor tasks
+* Provide handlers for reload and restart supervisor
 
 #### Variables
+
+The role variables and default values.
+
 ```yaml
 supervisor_enabled: yes                   # The role is enabled
 supervisor_cfgdir: /etc/supervisor        # path to config directory
@@ -17,6 +26,7 @@ supervisor_tasks: []                      # List of supervisor tasks
                                           #         option: value
                                           #         option: value
                                           #         option: value
+supervisor_superlance: no                 # Install superlance (http://superlance.readthedocs.org/
 ```
 
 #### Usage

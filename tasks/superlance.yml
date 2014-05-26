@@ -1,0 +1,7 @@
+---
+
+- name: Install python-pip
+  apt: pkg=python-pip
+
+- name: Install superlance
+  pip: name=superlance

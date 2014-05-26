@@ -10,3 +10,4 @@ supervisor_tasks: []                      # List of supervisor tasks
                                           #         option: value
                                           #         option: value
                                           #         option: value
+supervisor_superlance: no                 # Install superlance (http://superlance.readthedocs.org/
