@@ -11,6 +11,13 @@
   pip: name=superlance
   when: supervisor_superlance
 
+- name: Prepare directories
+  file: state=directory path={{item}}
+  with_items:
+    - "{{supervisor_cfgdir}}"
+    - "{{supervisor_logdir}}"
+    - "{{supervisor_incdir}}"
+
 - name: Configure supervisor - pt. 1
   template: src=supervisor.j2 dest=/etc/init.d/supervisor owner=root group=root mode=0755
 
