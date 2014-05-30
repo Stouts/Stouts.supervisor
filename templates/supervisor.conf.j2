@@ -1,0 +1,14 @@
+#!upstart
+
+description "Manage supervisor"
+
+start on (local-filesystems and runlevel [2345])
+stop on runlevel [!2345]
+
+{% if supervisor_nofile %}
+limit nofile {{supervisor_nofile}} {{supervisor_nofile}}
+{% endif %}
+
+respawn
+
+exec {{supervisor_bin}} -c /etc/supervisor/supervisord.conf --nodaemon

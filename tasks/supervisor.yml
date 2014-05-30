@@ -19,13 +19,13 @@
     - "{{supervisor_incdir}}"
 
 - name: Configure supervisor - pt. 1
-  template: src=supervisor.j2 dest=/etc/init.d/supervisor owner=root group=root mode=0755
-
-- name: Configure supervisor
   template: src=supervisord.conf.j2 dest={{supervisor_cfgdir}}/supervisord.conf owner=root group=root mode=0644
   notify:
     - supervisor reread
     - supervisor restart
+
+- name: Configure supervisor - pt. 2
+  template: src=supervisor.conf.j2 dest=/etc/init/supervisor.conf owner=root group=root mode=0755
 
 - name: Ensure the supervisor is started
   service: name=supervisor state=started
