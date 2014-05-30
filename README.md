@@ -17,6 +17,9 @@ The role variables and default values.
 
 ```yaml
 supervisor_enabled: yes                   # The role is enabled
+supervisor_bin: /usr/local/bin/supervisord
+supervisor_pid: /var/run/supervisord.pid
+supervisor_nofile: 65356                  # Set max opened files (set blank to default limits)
 supervisor_cfgdir: /etc/supervisor        # path to config directory
 supervisor_logdir: /var/log/supervisor    # path to logs directory
 supervisor_incdir: "{{supervisor_cfgdir}}/conf.d" # path to include directory

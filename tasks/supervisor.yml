@@ -1,13 +1,21 @@
 ---
 
-- name: Install supervisor
-  apt: pkg=supervisor
+- name: Install dependencies
+  apt: pkg=python-pip
+  when: ansible_os_family == 'Debian'
 
-- include: superlance.yml
+- name: Install supervisor
+  pip: name=supervisor
+
+- name: Install superlance
+  pip: name=superlance
   when: supervisor_superlance
 
+- name: Configure supervisor - pt. 1
+  template: src=supervisor.j2 dest=/etc/init.d/supervisor owner=root group=root mode=0755
+
 - name: Configure supervisor
-  template: src=supervisord.conf.j2 dest={{supervisor_cfgdir}}/supervisord.conf
+  template: src=supervisord.conf.j2 dest={{supervisor_cfgdir}}/supervisord.conf owner=root group=root mode=0644
   notify:
     - supervisor reread
     - supervisor restart

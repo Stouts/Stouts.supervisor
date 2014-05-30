@@ -3,13 +3,12 @@
 
 ; supervisor config file
 
-[unix_http_server]
-file=/var/run/supervisor.sock    ; (the path to the socket file)
-chmod=0700                       ; sockef file mode (default 0700)
+[inet_http_server]
+port = 127.0.0.1:9001
 
 [supervisord]
 logfile={{supervisor_logdir}}/supervisord.log ; (main log file;default $CWD/supervisord.log)
-pidfile=/var/run/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+pidfile={{supervisor_pid}}; (supervisord pidfile;default supervisord.pid)
 childlogdir={{supervisor_logdir}}            ; ('AUTO' child log dir, default $TEMP)
 
 ; the below section must remain in the config file for RPC
@@ -22,7 +21,6 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
 
 ; programs
-
 {% for task in supervisor_tasks %}
 [program:{{task.name}}]
 {% for option, value in task.items() %}
