@@ -6,6 +6,10 @@
 [inet_http_server]
 port = 127.0.0.1:9001
 
+[unix_http_server]
+file=/var/run/supervisor.sock
+chmod=0700
+
 [supervisord]
 logfile={{supervisor_logdir}}/supervisord.log ; (main log file;default $CWD/supervisord.log)
 pidfile={{supervisor_pid}}; (supervisord pidfile;default supervisord.pid)
@@ -24,6 +28,16 @@ serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
 {% for task in supervisor_tasks %}
 [program:{{task.name}}]
 {% for option, value in task.items() %}
+{%if option != 'name' %}
+{{option}} = {{value}}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+; events
+{% for event in supervisor_events %}
+[eventlistener:{{event.name}}]
+{% for option, value in event.items() %}
 {%if option != 'name' %}
 {{option}} = {{value}}
 {% endif %}
