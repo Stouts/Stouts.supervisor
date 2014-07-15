@@ -23,12 +23,13 @@ supervisor_nofile: 65356                  # Set max opened files (set blank to d
 supervisor_cfgdir: /etc/supervisor        # path to config directory
 supervisor_logdir: /var/log/supervisor    # path to logs directory
 supervisor_incdir: "{{supervisor_cfgdir}}/conf.d" # path to include directory
-supervisor_tasks: []                      # List of supervisor tasks
+supervisor_tasks: []                      # List of supervisor programs
                                           # Ex. supervisor_tasks:
                                           #       - name: <name>
                                           #         option: value
                                           #         option: value
                                           #         option: value
+supervisor_events: []                     # similar to tasks/programs but for eventlisteners like crashmail
 supervisor_superlance: no                 # Install superlance (http://superlance.readthedocs.org/
 ```
 
@@ -51,6 +52,10 @@ Example:
           command: ping google.com
           autostart: true
           autorestart: true
+    supervisor_events:
+        - name: crashmail
+          command: crashmail -p program -m alerts@example.com
+          events: PROCESS_STATE_EXITED
 ```
 
 #### License
