@@ -23,7 +23,6 @@
 - name: Configure supervisor - pt. 1
   template: src=supervisord.conf.j2 dest={{supervisor_conf_file}} owner=root group=root mode=0644
   notify:
-    - supervisor reread
     - supervisor restart
 
 - name: Configure supervisor - pt. 2

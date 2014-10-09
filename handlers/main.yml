@@ -2,6 +2,3 @@
 
 - name: supervisor restart
   service: name=supervisor state=restarted
-
-- name: supervisor reread
-  shell: "{{ supervisor_bindir }}/supervisorctl -c {{ supervisor_conf_file }} reread && {{ supervisor_bindir }}/supervisorctl -c {{ supervisor_conf_file }} update"
