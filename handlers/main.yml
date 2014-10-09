@@ -4,4 +4,4 @@
   service: name=supervisor state=restarted
 
 - name: supervisor reread
-  shell: /usr/local/bin/supervisorctl -c {{supervisor_cfgdir}}/supervisord.conf reread && /usr/local/bin/supervisorctl -c {{supervisor_cfgdir}}/supervisord.conf update
+  shell: "{{ supervisor_bindir }}/supervisorctl -c {{ supervisor_conf_file }} reread && {{ supervisor_bindir }}/supervisorctl -c {{ supervisor_conf_file }} update"
