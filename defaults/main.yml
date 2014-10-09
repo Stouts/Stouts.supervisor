@@ -1,6 +1,7 @@
 ---
 
 supervisor_enabled: yes                   # The role is enabled
+supervisor_version: "3.1.2"
 supervisor_bin: /usr/local/bin/supervisord
 supervisor_pid: /var/run/supervisord.pid
 supervisor_nofile: 65356                  # Set max opened files (set blank to default limits)
