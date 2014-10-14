@@ -2,6 +2,3 @@
 
 - name: supervisor restart
   service: name=supervisor state=restarted
-
-- name: supervisor reread
-  shell: /usr/local/bin/supervisorctl -c {{supervisor_cfgdir}}/supervisord.conf reread && /usr/local/bin/supervisorctl -c {{supervisor_cfgdir}}/supervisord.conf update

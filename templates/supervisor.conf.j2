@@ -11,4 +11,4 @@ limit nofile {{supervisor_nofile}} {{supervisor_nofile}}
 
 respawn
 
-exec {{supervisor_bin}} -c /etc/supervisor/supervisord.conf --nodaemon
+exec {{supervisor_bin}} -c {{ supervisor_conf_file }} --nodaemon

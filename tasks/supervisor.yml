@@ -5,8 +5,10 @@
   when: ansible_os_family == 'Debian'
 
 - name: Install supervisor
-  pip: name=supervisor
-
+  pip: name=supervisor version={{ supervisor_version }}
+  notify:
+    - supervisor restart
+    
 - name: Install superlance
   pip: name=superlance
   when: supervisor_superlance
@@ -19,9 +21,8 @@
     - "{{supervisor_incdir}}"
 
 - name: Configure supervisor - pt. 1
-  template: src=supervisord.conf.j2 dest={{supervisor_cfgdir}}/supervisord.conf owner=root group=root mode=0644
+  template: src=supervisord.conf.j2 dest={{supervisor_conf_file}} owner=root group=root mode=0644
   notify:
-    - supervisor reread
     - supervisor restart
 
 - name: Configure supervisor - pt. 2
