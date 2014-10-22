@@ -1,10 +1,11 @@
 Stouts.supervisor
 =================
 
-[![Build Status](https://travis-ci.org/Stouts/Stouts.supervisor.png)](https://travis-ci.org/Stouts/Stouts.supervisor)
+[![Build Status](http://img.shields.io/travis/Stouts/Stouts.sudo.svg?style=flat-square)](https://travis-ci.org/Stouts/Stouts.sudo)
+[![Galaxy](http://img.shields.io/badge/galaxy-Stouts.sudo-blue.svg?style=flat-square)](https://galaxy.sudo.com/list#/roles/885)
+[![Tag](http://img.shields.io/github/tag/Stouts/Stouts.sudo.svg?style=flat-square)]()
 
 Ansible role which manage [supervisor](http://supervisord.org)
-Ansible role apt which help you with:
 
 * Install and manage [supervisor](http://supervisord.org)
 * Install [superlance](http://superlance.readthedocs.org)
