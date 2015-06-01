@@ -39,6 +39,9 @@ serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
 ; programs
 {{ set_section('program', supervisor_tasks) }}
 
+; groups
+{{ set_section('group', supervisor_groups) }}
+
 ; events
 {{ set_section('eventlistener', supervisor_events) }}
 
