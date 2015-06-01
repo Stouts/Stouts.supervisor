@@ -34,6 +34,7 @@ supervisor_tasks: []                      # List of supervisor programs
                                           #         option: value
                                           #         option: value
 supervisor_events: []                     # similar to tasks/programs but for eventlisteners like crashmail
+supervisor_groups: []                     # groups of tasks
 supervisor_superlance: no                 # Install superlance (http://superlance.readthedocs.org/
 ```
 
@@ -60,6 +61,9 @@ Example:
         - name: crashmail
           command: crashmail -p program -m alerts@example.com
           events: PROCESS_STATE_EXITED
+    supervisor_groups:
+        - name: my_group
+          programs: ping
 ```
 
 #### License
