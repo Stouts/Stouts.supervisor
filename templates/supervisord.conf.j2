@@ -3,6 +3,18 @@
 
 ; supervisor config file
 
+; set options for a section
+{% macro set_section(section_label, subsections) %}
+{% for section in subsections %}
+[{{ section_label }}:{{ section.name }}]
+{% for option, value in section.items() %}
+{% if option != 'name' %}
+{{ option }} = {{ value }}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endmacro %}
+
 [inet_http_server]
 port = 127.0.0.1:9001
 
@@ -25,24 +37,13 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket
 
 ; programs
-{% for task in supervisor_tasks %}
-[program:{{task.name}}]
-{% for option, value in task.items() %}
-{%if option != 'name' %}
-{{option}} = {{value}}
-{% endif %}
-{% endfor %}
-{% endfor %}
+{{ set_section('program', supervisor_tasks) }}
+
+; groups
+{{ set_section('group', supervisor_groups) }}
 
 ; events
-{% for event in supervisor_events %}
-[eventlistener:{{event.name}}]
-{% for option, value in event.items() %}
-{%if option != 'name' %}
-{{option}} = {{value}}
-{% endif %}
-{% endfor %}
-{% endfor %}
+{{ set_section('eventlistener', supervisor_events) }}
 
 ; The [include] section can just contain the "files" setting.  This
 ; setting can list multiple files (separated by whitespace or
