@@ -25,8 +25,17 @@
   notify:
     - supervisor restart
 
-- name: Configure supervisor - pt. 2
+- name: Configure supervisor (Ubuntu) - pt. 2
   template: src=supervisor.conf.j2 dest=/etc/init/supervisor.conf owner=root group=root mode=0755
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Configure supervisor (Debian) - pt. 2
+  template: src=supervisor_debian.conf.j2 dest=/etc/init.d/supervisor owner=root group=root mode=0755
+  when: ansible_distribution == 'Debian'
+
+- name: Enable supervisor service (Debian) - pt. 3
+  service: name=supervisor enabled=yes
+  when: ansible_distribution == 'Debian'
 
 - name: Ensure the supervisor is started
   service: name=supervisor state=started
